@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JQuery pratices</title>
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.css">
+<style>
+*{
+  border: 2px solid red;
+}
+body{
+  border: 5px solid greenyellow;
+}
+.container{
+  border:2px solid blue;
+}
+img {
+  max-width: 30%;
+}
+.image-center {
+  display: block;
+  margin: 10px auto;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 id="title" class="text-center">Welcome to my website</h1>
+  <div class="row">
+    <article class="col-sm-8">
+      <p>Paragraph1</p>
+      <img src="pup-in-cup.jpg">
+      <p>Paragraph2</p>
+      <p>Paragraph3</p>
+    </article>
+    <aside class="col-sm-4">
+      <ol>
+        <li>item1</li>
+        <li>item2</li>
+      </ol>
+    </aside>
+  </div>
+  <div class="row mb-5">
+    <div class="col-sm-4">
+      Red
+      <input class="form-control" type="number" min="0" max="255" value="255">
+    </div>
+    <div class="col-sm-4">
+      Green
+      <input class="form-control" type="number" min="0" max="255" value="255">
+    </div>
+    <div class="col-sm-4">
+      Blue
+      <input class="form-control" type="number" min="0" max="255" value="255">
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script>
+$(function(){
+  console.log("Let's get ready to party with jQuery")//1.When DOM is ready,console.log("Let's get ready to party with jQuery")
+  $("article img").addClass("image-center")//2.Give images inside <article> class .image-center
+  $("article p:last-child").remove()//3.Remove last paragraph in <article>
+  // $("#title").css("font-size",Math.random()*100)//4.Set font-size of #title to be random from 0 to 99px
+  $("ol").append($("<li>",{text:"New item just added"}))//5.Add an item to <li>,say whatever you want
+  // $("aside").empty().append($("<p>",{text:"Sorry about that list"}))//6.Empty <aside> and put a <p>,say 'Sorry about that list'
+  $(".form-control").on('keyup blur change',()=>{//7.Change numbers on bottom to change body background color
+    let r = $(".form-control").eq(0).val()
+    let g = $(".form-control").eq(1).val()
+    let b = $(".form-control").eq(2).val()
+    $("body").css("background-color","rgb(" + r + "," + g + "," + b + ")")
+  })
+  $("img").on('click',e=>$(e.target).remove())//8.Add event listener to 'click' to remove image from DOM
+})
+</script>
+</body>
+</html>
